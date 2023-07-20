@@ -10,7 +10,7 @@
 #include <string.h>
 
 int _strlen(char *str);
-char *lineReader(char **buffer, size_t *bufsize);
+char *lineReader(char **buffer,size_t *bufsize);
 int _strCmp(const char *str1, const char *str2);
 
 #endif

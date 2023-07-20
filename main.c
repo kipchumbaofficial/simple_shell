@@ -23,6 +23,8 @@ int main(int ac, char **av __attribute__((unused)))
 	{
 		write (1, prompt, _strlen(prompt));
 		retbuf = lineReader(&buffer, &bufsize);
+		if (retbuf == NULL)
+			break;
 		if (retbuf != NULL)
 		{
 			i = 0;
@@ -33,10 +35,6 @@ int main(int ac, char **av __attribute__((unused)))
 				args[i] = strtok(NULL, " \n");
 			}
 			args[i] = NULL;
-			if (_strCmp(args[0], "^C") == 0)
-			{
-				break;
-			}
 			if (fork() != 0)
 			{
 				wait(NULL);

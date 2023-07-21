@@ -2,7 +2,7 @@
 /**
  * lineReader - Read line from stdin
  * @buffer: Buffer to write to
- * @bufsize: Size of buffer;
+ * @bufsize: Size of buffer
  *
  * Return: Written buffer
  */

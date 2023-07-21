@@ -14,17 +14,17 @@ char *pathFinder(char *command)
 	njia = getenv("PATH");
 	if (njia)
 	{
-		njia_dup = strdup(njia);
+		njia_dup = strDup(njia);
 		token = strtok(njia_dup, ":");
 
 		while (token != NULL)
 		{
 			dir_len = _strlen(token);
 			file_link = malloc(cmd_len + dir_len + 2);
-			strcpy(file_link, token);
-			strcat(file_link, "/");
-			strcat(file_link, command);
-			strcat(file_link, "\0");
+			strCpy(file_link, token);
+			strCat(file_link, "/");
+			strCat(file_link, command);
+			strCat(file_link, "\0");
 			if (stat(file_link, &buffer) == 0)
 			{
 				free(njia_dup);

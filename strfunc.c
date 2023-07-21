@@ -81,6 +81,7 @@ char *strCpy(char *dest, char *src)
 	{
 		dest[i] = src[i];
 	}
+	dest[i] = '\0';
 	return (dest);
 }
 /**
@@ -96,7 +97,7 @@ char *strCat(char *str2, char *str1)
 
 	i = 0;
 
-	while (*str2 != '\0')
+	while (str2[i] != '\0')
 	{
 		i++;
 	}

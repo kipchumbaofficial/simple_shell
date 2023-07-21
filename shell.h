@@ -7,10 +7,12 @@
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
 #include <string.h>
 
 int _strlen(char *str);
-char *lineReader(char **buffer,size_t *bufsize);
+char *lineReader(char **buffer, size_t *bufsize);
 int _strCmp(const char *str1, const char *str2);
+char *pathFinder(char *command);
 
 #endif

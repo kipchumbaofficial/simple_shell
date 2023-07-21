@@ -10,7 +10,7 @@ int main(int ac, char **av __attribute__((unused)))
 {
 	char *args[100];
 	int x, i;
-	char *buffer = NULL, *retbuf;
+	char *buffer = NULL, *retbuf, *path;
 	size_t bufsize = 0;
 
 	if (ac != 1)
@@ -32,13 +32,14 @@ int main(int ac, char **av __attribute__((unused)))
 			args[i] = strtok(NULL, "\n ");
 		}
 		args[i] = NULL;
+		path = pathFinder(args[0]);
 		if (fork() != 0)
 		{
 			wait(NULL);
 		}
 		else
 		{
-			x = execve(args[0], args, NULL);
+			x = execve(path, args, NULL);
 			if (x == -1)
 		{
 			perror("./shell");

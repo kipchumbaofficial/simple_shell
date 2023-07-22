@@ -1,5 +1,29 @@
 #include "shell.h"
 /**
+ * _getenv - Get environment variables
+ * @name: Name of variable
+ *
+ * Return: Value of the variable
+ */
+extern char **environ;
+
+char *_getenv(char *name)
+{
+	char *retval = NULL;
+	char **envi;
+	int len = _strlen(name);
+
+	for (envi = environ; *envi != NULL; envi++)
+	{
+		if (strncmp(*envi, name, len) == 0 && (*envi)[len] == '=')
+		{
+			retval = *envi + len + 1;
+			break;
+		}
+	}
+	return (retval);
+}
+/**
  * pathFinder - Gets path of a command
  * @command: Command to get its full path
  *
@@ -11,7 +35,7 @@ char *pathFinder(char *command)
 	int cmd_len = _strlen(command), dir_len;
 	struct stat buffer;
 
-	njia = getenv("PATH");
+	njia = _getenv("PATH");
 	if (njia)
 	{
 		njia_dup = strDup(njia);

@@ -20,12 +20,11 @@ int (*intbuilts[]) (char **) = {
 int _idadi_builtins(void)
 {
 	return (sizeof(inbuilts) / sizeof(char *));
-}*/
+}
 
 
 
 int _toka(char **args __attribute__((unused)))
 {
-	printf("logging out...\n");
 	return (-1);
 }

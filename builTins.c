@@ -2,11 +2,12 @@
 
 /**
  * _toka- exit function
- * @args - argument pointer
+ * _idadi_builtins - number of builtins
+ * @args: argument pointer
  *
- * Return: o
+ * Return: 0
  */
-int _toka(char **args __attribute__((unused)));
+int _toka(char **args);
 
 char *inbuilts[] = {
 	"exit"
@@ -16,13 +17,15 @@ int (*intbuilts[]) (char **) = {
 &_toka
 };
 
-int _idadi_builtins()
+int _idadi_builtins(void)
 {
-	return sizeof(inbuilts) / sizeof(char *);
-}
+	return (sizeof(inbuilts) / sizeof(char *));
+}*/
+
 
 
 int _toka(char **args __attribute__((unused)))
 {
-	exit(0);
+	printf("logging out...\n");
+	return (-1);
 }

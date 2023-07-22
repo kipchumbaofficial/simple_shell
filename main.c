@@ -9,7 +9,7 @@
 int main(int ac, char **av __attribute__((unused)))
 {
 	char *args[100];
-	int x, i;
+	int  i, x;
 	char *buffer = NULL, *retbuf, *path;
 	size_t bufsize = 0;
 
@@ -33,6 +33,11 @@ int main(int ac, char **av __attribute__((unused)))
 		}
 		args[i] = NULL;
 		path = pathFinder(args[0]);
+		if (_strCmp(args[0], "exit") == 0)
+		{
+			if (_toka(args) == -1)
+				break;
+		}
 		if (fork() != 0)
 		{
 			wait(NULL);
@@ -41,10 +46,10 @@ int main(int ac, char **av __attribute__((unused)))
 		{
 			x = execve(path, args, NULL);
 			if (x == -1)
-		{
-			perror("./shell");
-			exit(EXIT_FAILURE);
-		}
+			{
+				perror("./shell");
+				exit(EXIT_FAILURE);
+			}
 		}
 	}
 	return (0);

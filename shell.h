@@ -17,5 +17,5 @@ char *pathFinder(char *command);
 char *strDup(char *str);
 char *strCpy(char *dest, char *src);
 char *strCat(char *str2, char *str1);
-int _toka(char **args __attribute__((unused)));
+int _toka(char **args);
 #endif

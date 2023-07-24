@@ -8,8 +8,8 @@
  */
 int main(int ac, char **av __attribute__((unused)))
 {
-	char *args[100];
-	int  i, x;
+	char *args[100], *arguments[100];
+	int  i, x, j;
 	char *buffer = NULL, *retbuf, *path;
 	size_t bufsize = 0;
 
@@ -33,6 +33,14 @@ int main(int ac, char **av __attribute__((unused)))
 		}
 		args[i] = NULL;
 		path = pathFinder(args[0]);
+		arguments[0] = path;
+		j = 1;
+		while (args[j] != NULL && i < 100)
+		{
+			arguments[j] = args[j];
+			j++;
+		}
+		arguments[j] = NULL;
 		if (_strCmp(args[0], "exit") == 0)
 		{
 			if (_toka(args) == -1)
@@ -44,7 +52,7 @@ int main(int ac, char **av __attribute__((unused)))
 		}
 		else
 		{
-			x = execve(path, args, NULL);
+			x = execve(arguments[0], arguments, NULL);
 			if (x == -1)
 			{
 				perror("./shell");

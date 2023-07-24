@@ -31,10 +31,14 @@ char *_getenv(char *name)
  */
 char *pathFinder(char *command)
 {
-	char *storeD_path, *njia, *njia_dup, *token, *file_link;
+	char  *njia, *njia_dup, *token, *file_link, *file_path;
 	int cmd_len = _strlen(command), dir_len;
 	struct stat buffer;
 
+	if (stat(command, &buffer) == 0)
+	{
+		return (command);
+	}
 	njia = _getenv("PATH");
 	if (njia)
 	{
@@ -51,7 +55,7 @@ char *pathFinder(char *command)
 			strCat(file_link, "\0");
 			if (stat(file_link, &buffer) == 0)
 			{
-				storeD_path = file_link;
+				file_path = file_link;
 				break;
 			}
 			else
@@ -61,14 +65,10 @@ char *pathFinder(char *command)
 			}
 		}
 		free(njia_dup);
-		if (storeD_path)
-		{
-			return (storeD_path);
-		}
-		if (stat(command, &buffer) == 0)
-		{
-			return (command);
-		}
+	}
+	if (file_path)
+	{
+		return (file_path);
 	}
 	return (NULL);
 }

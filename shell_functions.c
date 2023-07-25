@@ -27,11 +27,11 @@ void executor(char *buffer)
 	}
 	if (fork() != 0)
 	{
-		wait (NULL);
+		wait(NULL);
 	}
 	else
 	{
-		x = execve(path, args, NULL);
+		x = execve(path, args, environ);
 		if (x == -1)
 		{
 			perror("./shell");

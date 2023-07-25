@@ -19,6 +19,11 @@ void executor(char *buffer)
 		args[i] = strtok(NULL, " \n");
 	}
 	args[i] = NULL;
+	if (_strCmp(args[0], "exit") == 0)
+	{
+		if(_toka(args) == -1)
+			exit(EXIT_SUCCESS);
+	}
 	path = pathFinder(args[0]);
 	if (path == NULL)
 	{

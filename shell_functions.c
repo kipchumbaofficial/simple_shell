@@ -1,5 +1,25 @@
 #include "shell.h"
 /**
+ *strNcmp - compares two strings
+ *@str1: string one
+ *@str2: string two
+ *@n: number of characters
+ *
+ *Return: 0 on success
+ */
+int strNcmp(char *str1, char *str2, size_t n)
+{
+	size_t d;
+
+	for (d = 0; d < n && str1[d] != '\0' && str2[d] != '\0'; d++)
+	{
+		if (str1[d] != str2[d])
+			return (str1[d] - str2[d]);
+	}
+	return (0);
+}
+
+/**
  * executor - Shell execve
  * @buffer: String containing commands
  *
@@ -44,26 +64,7 @@ void executor(char *buffer)
 		}
 	}
 }
-/**
- * strNcmp - compares two strings
- * @str1 - string one
- * @str2 - string two
- * @n - number of characters
- *
- * Return: 0 on success
- */
-int strNcmp(char *str1, char *str2, size_t n)
-{
-	size_t i;
 
-	for (i = 0; i < n && str1[i] != '\0' && str2[i] != '\0'; i++)
-	{
-		if(str1[i] != str2[i])
-			return (str1[i] - str2[i]);
-	}
-
-	return (0);
-}
 /**
  * _getenv - Get environment variables
  * @name: Name of variable

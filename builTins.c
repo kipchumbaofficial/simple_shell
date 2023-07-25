@@ -2,7 +2,6 @@
 
 /**
  * _toka- exit function
- * _idadi_builtins - number of builtins
  * @args: argument pointer
  *
  * Return: 0
@@ -16,13 +15,6 @@ char *inbuilts[] = {
 int (*intbuilts[]) (char **) = {
 &_toka
 };
-
-int _idadi_builtins(void)
-{
-	return (sizeof(inbuilts) / sizeof(char *));
-}
-
-
 
 int _toka(char **args __attribute__((unused)))
 {

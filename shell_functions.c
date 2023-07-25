@@ -1,11 +1,50 @@
 #include "shell.h"
 /**
+ * executor - Shell execve
+ * @buffer: String containing commands
+ *
+ * Return: Nothing
+ */
+void executor(char *buffer)
+{
+	char *args[100];
+	int i, x;
+	char *path;
+
+	i = 0;
+	args[i] = strtok(buffer, " \n");
+	while (args[i] != NULL && i <= 99)
+	{
+		i++;
+		args[i] = strtok(NULL, " \n");
+	}
+	args[i] = NULL;
+	path = pathFinder(args[0]);
+	if (path == NULL)
+	{
+		perror("./shell");
+		return;
+	}
+	if (fork() != 0)
+	{
+		wait (NULL);
+	}
+	else
+	{
+		x = execve(path, args, NULL);
+		if (x == -1)
+		{
+			perror("./shell");
+			exit(EXIT_FAILURE);
+		}
+	}
+}
+/**
  * _getenv - Get environment variables
  * @name: Name of variable
  *
  * Return: Value of the variable
  */
-extern char **environ;
 
 char *_getenv(char *name)
 {
@@ -31,7 +70,7 @@ char *_getenv(char *name)
  */
 char *pathFinder(char *command)
 {
-	char  *njia, *njia_dup, *token, *file_link, *file_path;
+	char *njia, *njia_dup, *token, *file_link, *file_path = NULL;
 	int cmd_len = _strlen(command), dir_len;
 	struct stat buffer;
 
@@ -44,7 +83,6 @@ char *pathFinder(char *command)
 	{
 		njia_dup = strDup(njia);
 		token = strtok(njia_dup, ":");
-
 		while (token != NULL)
 		{
 			dir_len = _strlen(token);

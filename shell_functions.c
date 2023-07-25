@@ -33,6 +33,8 @@ void executor(char *buffer)
 
 	i = 0;
 	args[i] = strtok(buffer, " \n");
+	if (args[i] == NULL)
+		return;
 	while (args[i] != NULL && i <= 99)
 	{
 		i++;

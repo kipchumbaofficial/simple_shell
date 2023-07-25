@@ -21,7 +21,7 @@ void executor(char *buffer)
 	args[i] = NULL;
 	if (_strCmp(args[0], "exit") == 0)
 	{
-		if(_toka(args) == -1)
+		if (_toka(args) == -1)
 			exit(EXIT_SUCCESS);
 	}
 	path = pathFinder(args[0]);
@@ -45,6 +45,26 @@ void executor(char *buffer)
 	}
 }
 /**
+ * strNcmp - compares two strings
+ * @str1 - string one
+ * @str2 - string two
+ * @n - number of characters
+ *
+ * Return: 0 on success
+ */
+int strNcmp(char *str1, char *str2, size_t n)
+{
+	size_t i;
+
+	for (i = 0; i < n && str1[i] != '\0' && str2[i] != '\0'; i++)
+	{
+		if(str1[i] != str2[i])
+			return (str1[i] - str2[i]);
+	}
+
+	return (0);
+}
+/**
  * _getenv - Get environment variables
  * @name: Name of variable
  *
@@ -59,7 +79,7 @@ char *_getenv(char *name)
 
 	for (envi = environ; *envi != NULL; envi++)
 	{
-		if (strncmp(*envi, name, len) == 0 && (*envi)[len] == '=')
+		if (strNcmp(*envi, name, len) == 0 && (*envi)[len] == '=')
 		{
 			retval = *envi + len + 1;
 			break;

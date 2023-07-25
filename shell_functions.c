@@ -103,9 +103,7 @@ char *pathFinder(char *command)
 	struct stat buffer;
 
 	if (stat(command, &buffer) == 0)
-	{
 		return (command);
-	}
 	njia = _getenv("PATH");
 	if (njia)
 	{
@@ -115,6 +113,8 @@ char *pathFinder(char *command)
 		{
 			dir_len = _strlen(token);
 			file_link = malloc(cmd_len + dir_len + 2);
+			if (file_link == NULL)
+				return (NULL);
 			strCpy(file_link, token);
 			strCat(file_link, "/");
 			strCat(file_link, command);

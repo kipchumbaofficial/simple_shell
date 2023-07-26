@@ -65,7 +65,8 @@ void executor(char *buffer)
 			exit(EXIT_FAILURE);
 		}
 	}
-	free(path);
+	if (isatty(0))
+		free(path);
 }
 
 /**

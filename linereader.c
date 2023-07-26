@@ -8,12 +8,13 @@
  */
 char *lineReader(char **buffer, size_t *bufsize)
 {
-	ssize_t characters;
 	char *retbuf;
+	ssize_t characters;
 
 	characters = getline(buffer, bufsize, stdin);
 	if (characters == -1)
 	{
+		free(*buffer);
 		return (NULL);
 	}
 	retbuf = *buffer;

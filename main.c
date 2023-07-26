@@ -5,7 +5,7 @@
  */
 void signalHandler(int signalnum __attribute__((unused)))
 {
-	return;
+	exit(EXIT_SUCCESS);
 }
 /**
  * main - Command executer and prompter
@@ -16,7 +16,7 @@ void signalHandler(int signalnum __attribute__((unused)))
  */
 int main(int ac, char **av __attribute__((unused)))
 {
-	char *buffer, *retbuf;
+	char *buffer, *retbuf, *enter = "\n";
 	size_t bufsize = 120;
 	int p;
 
@@ -43,6 +43,7 @@ int main(int ac, char **av __attribute__((unused)))
 		retbuf = lineReader(&buffer, &bufsize);
 		if (retbuf == NULL)
 		{
+			write(1, enter, _strlen(enter));
 			exit(EXIT_SUCCESS);
 		}
 		executor(retbuf);

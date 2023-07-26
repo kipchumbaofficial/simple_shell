@@ -1,5 +1,13 @@
 #include "shell.h"
 /**
+ * signalHandler - Handles signals
+ * @signalnum: signal number
+ */
+void signalHandler(int signalnum __attribute__((unused)))
+{
+	return;
+}
+/**
  * main - Command executer and prompter
  * @ac: Argument count
  * @av: Argument Vector
@@ -8,8 +16,8 @@
  */
 int main(int ac, char **av __attribute__((unused)))
 {
-	char *buffer = NULL, *retbuf;
-	size_t bufsize = 0;
+	char *buffer, *retbuf;
+	size_t bufsize = 120;
 	int p;
 
 	if (ac != 1)
@@ -17,10 +25,17 @@ int main(int ac, char **av __attribute__((unused)))
 		perror("Usage");
 		exit(EXIT_FAILURE);
 	}
-	p = !isatty(0);
+	buffer = malloc(bufsize);
+	if (buffer == NULL)
+	{
+		perror("malloc");
+		exit(EXIT_FAILURE);
+	}
+	signal(SIGINT, signalHandler);
+	p = isatty(0);
 	while (1)
 	{
-		if (!p)
+		if (p)
 		{
 			write(1, "#cisfun$ ", _strlen("#cisfun$ "));
 			fflush(stdout);
@@ -28,13 +43,14 @@ int main(int ac, char **av __attribute__((unused)))
 		retbuf = lineReader(&buffer, &bufsize);
 		if (retbuf == NULL)
 		{
-			break;
+			exit(EXIT_SUCCESS);
 		}
 		executor(retbuf);
-		if (p)
+		if (!p)
 		{
 			break;
 		}
 	}
+	free(buffer);
 	return (0);
 }

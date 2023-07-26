@@ -18,5 +18,9 @@ char *lineReader(char **buffer, size_t *bufsize)
 		return (NULL);
 	}
 	retbuf = *buffer;
+	if (retbuf[characters - 1] == '\n')
+	{
+		retbuf[characters - 1] = '\0';
+	}
 	return (retbuf);
 }

@@ -5,7 +5,7 @@
  */
 void signalHandler(int signalnum __attribute__((unused)))
 {
-	exit(EXIT_SUCCESS);
+	write(1, "\n#cisfun$ ", _strlen("\n#cisfun$ "));
 }
 /**
  * main - Command executer and prompter

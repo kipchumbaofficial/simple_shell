@@ -44,7 +44,7 @@ void executor(char *buffer)
 	if (_strCmp(args[0], "exit") == 0)
 	{
 		free(buffer);
-		exit(EXIT_SUCCESS);
+		exit(0);
 	}
 	path = pathFinder(args[0]);
 	if (path == NULL)

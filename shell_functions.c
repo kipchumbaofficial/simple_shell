@@ -41,7 +41,7 @@ void executor(char *buffer)
 		args[i] = strtok(NULL, " \n");
 	}
 	args[i] = NULL;
-	if (_strCmp(args[0], "exit") == 0)
+	if (args[0] != NULL && _strCmp(args[0], "exit") == 0)
 	{
 		free(buffer);
 		exit(2);
